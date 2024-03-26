@@ -21,9 +21,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/api/sauces', [App\Http\Controllers\SauceController::class, 'index'])->name('sauces');
+Route::get('/sauces', [App\Http\Controllers\SauceController::class, 'index'])->name('sauces');
 
-Route::get('/api/sauces/:id', [App\Http\Controllers\SauceController::class, 'show'])->name('sauces');
+Route::get('/sauces/{id}', [App\Http\Controllers\SauceController::class, 'show'])->name('sauces');
 /*
 Route::post('/api/sauces');
 

@@ -21,9 +21,9 @@ class CreateSaucesTable extends Migration
             $table->string('description');
             $table->string('mainPepper');
             $table->string('imageUrl');
-            $table->number('heat');
-            $table->number('likes');
-            $table->number('dislikes');
+            $table->integer('heat');
+            $table->integer('likes');
+            $table->integer('dislikes');
             $table->json('usersLiked');
             $table->json('usersDisliked');
             $table->timestamps();

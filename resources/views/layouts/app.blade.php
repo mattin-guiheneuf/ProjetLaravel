@@ -34,7 +34,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        @auth
+                            <li><a href="{{ route('sauces.index') }}">All sauces</a></li>
+                            <li><a href="{{ route('sauces.create') }}">Add sauce</a></li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->

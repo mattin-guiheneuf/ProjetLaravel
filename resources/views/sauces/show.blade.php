@@ -12,7 +12,7 @@
         <p><strong>Dislikes : </strong>{{ $sauce->dislikes }}</p>
         @if(Auth::check())
         @if(Auth::user()->id == $sauce->userId)
-        <a href="{{ route('sauces.edit', ['id' => $sauce->id]) }}" method="POST"></a>
+        <a href="{{ route('sauces.edit', ['id' => $sauce->id]) }}" method="POST">Modifier la sauce</a>
         <button>Supprimer la sauce</button>
         @endif
         @endif

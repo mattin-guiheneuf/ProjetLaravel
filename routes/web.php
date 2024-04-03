@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/', [App\Http\Controllers\SauceController::class, 'index'])->name('sauces.index');
+Route::get('/sauces', [App\Http\Controllers\SauceController::class, 'index'])->name('sauces.index');
 
 Route::get('/sauces/{id}', [App\Http\Controllers\SauceController::class, 'show'])->name('sauces.show');
 

@@ -1,8 +1,10 @@
 @extends('layouts.app')
-
+<head>
+    <link rel="stylesheet" href="../../index.css">
+</head>
 @section('content')
     <div class="container">
-        <h1>Nos Sauces</h1>
+        <h1>The Sauces</h1>
         <div class="row">
             @foreach ($sauces as $sauce)
             <div class="">

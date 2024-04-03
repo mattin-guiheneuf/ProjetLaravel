@@ -15,17 +15,17 @@ class CreateSaucesTable extends Migration
     {
         Schema::create('sauces', function (Blueprint $table) {
             $table->id();
-            $table->string('userId');
+            $table->integer('userId')->nullable();
             $table->string('name');
             $table->string('manufacturer');
-            $table->string('description');
+            $table->text('description');
             $table->string('mainPepper');
             $table->string('imageUrl');
-            $table->number('heat');
-            $table->number('likes');
-            $table->number('dislikes');
-            $table->json('usersLiked');
-            $table->json('usersDisliked');
+            $table->integer('heat');
+            $table->integer('likes')->nullable();
+            $table->integer('dislikes')->nullable();
+            $table->json('usersLiked')->nullable();
+            $table->json('usersDisliked')->nullable();
             $table->timestamps();
         });
     }

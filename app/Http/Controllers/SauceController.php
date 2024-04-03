@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Sauce;
 
 class SauceController extends Controller
 {
@@ -13,7 +14,8 @@ class SauceController extends Controller
      */
     public function index()
     {
-        //
+        $sauces = Sauce::all();
+        return view('sauces.index', compact('sauces'));
     }
 
     /**
@@ -23,7 +25,7 @@ class SauceController extends Controller
      */
     public function create()
     {
-        //
+        return view('sauces.create');
     }
 
     /**
@@ -34,7 +36,20 @@ class SauceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'manufacturer' => 'required',
+            'description' => 'required',
+            'mainPepper' => 'required',
+            'imageUrl' => 'required',
+            'heat' => 'required | min:1 | max:10'
+        ]);
+
+        $sauce = new Sauce($request->all());
+        $sauce->userId = auth()->user()->id;
+        $sauce->save();
+
+        return redirect()->route('sauces.index')->with('success', 'Sauce ajoutée avec succès');
     }
 
     /**
@@ -45,7 +60,8 @@ class SauceController extends Controller
      */
     public function show($id)
     {
-        //
+        $sauce = Sauce::findOrFail($id);
+        return view('sauces.show', compact('sauce'));
     }
 
     /**
@@ -56,7 +72,8 @@ class SauceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sauce = Sauce::findOrFail($id);
+        return view('sauces.edit', compact('sauce'));
     }
 
     /**
@@ -68,7 +85,19 @@ class SauceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'manufacturer' => 'required',
+            'description' => 'required',
+            'mainPepper' => 'required',
+            'imageUrl' => 'required',
+            'heat' => 'required | min:1 | max:10'
+        ]);
+
+        $sauce = Sauce::findOrFail($id);
+        $sauce->update($request->all());
+
+        return redirect()->route('sauces.index')->with('success', 'Sauce modifiée avec succès');
     }
 
     /**
@@ -79,6 +108,9 @@ class SauceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sauce = Sauce::findOrFail($id);
+        $sauce->delete();
+
+        return redirect()->route('sauces.index')->with('success', 'Sauce supprimée avec succès');
     }
 }

@@ -21,14 +21,16 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/sauces', [App\Http\Controllers\SauceController::class, 'index'])->name('sauces');
+Route::get('/', [App\Http\Controllers\SauceController::class, 'index'])->name('sauces.index');
 
-Route::get('/sauces/{id}', [App\Http\Controllers\SauceController::class, 'show'])->name('sauces');
-/*
-Route::post('/api/sauces');
+Route::get('/sauces/{id}', [App\Http\Controllers\SauceController::class, 'show'])->name('sauces.show');
 
-Route::put('/api/sauces/:id');
+Route::get('/create', [App\Http\Controllers\SauceController::class, 'create'])->name('sauces.create');
 
-Route::delete('api/sauces/:id');
+Route::post('/store', [App\Http\Controllers\SauceController::class, 'store'])->name('sauces.store');
 
-Route::post('/api/sauces/:id/like'); */
+Route::delete('/sauces/{id}', [App\Http\Controllers\SauceController::class, 'destroy'])->name('sauces.destroy');
+
+Route::get('/edit/{id}', [App\Http\Controllers\SauceController::class, 'edit'])->name('sauces.edit');
+
+Route::put('/update/{id}', [App\Http\Controllers\SauceController::class, 'update'])->name('sauces.update');

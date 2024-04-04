@@ -7,6 +7,14 @@
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">{{ $sauce->name }}</h2>
+                        <form action="{{ route('sauces.like', ['id' => $sauce->id]) }}" method="POST" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-success mr-2">Like</button>
+                        </form>
+                        <form action="{{ route('sauces.dislike', ['id' => $sauce->id]) }}" method="POST" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Dislike</button>
+                        </form>
                     </div>
                     <div class="card-body">
                         <img src="{{ $sauce->imageUrl }}" alt="{{ $sauce->name }}" class="img-fluid mb-3">

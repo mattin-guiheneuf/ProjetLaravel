@@ -35,3 +35,7 @@ Route::get('/edit/{id}', [App\Http\Controllers\SauceController::class, 'edit'])-
 
 Route::put('/update/{id}', [App\Http\Controllers\SauceController::class, 'update'])->name('sauces.update');
 
+Route::post('/sauces/{id}/like', [App\Http\Controllers\SauceController::class, 'like'])->name('sauces.like');
+Route::post('/sauces/{id}/dislike', [App\Http\Controllers\SauceController::class, 'dislike'])->name('sauces.dislike');
+
+

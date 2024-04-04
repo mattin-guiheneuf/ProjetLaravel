@@ -97,7 +97,7 @@ class SauceController extends Controller
         $sauce = Sauce::findOrFail($id);
 
         $sauce->update([$request->all()]);
-        
+
         return redirect()->route('sauces.index')->with('success', 'Sauce modifiée avec succès');
     }
 
@@ -113,5 +113,54 @@ class SauceController extends Controller
         $sauce->delete();
 
         return redirect()->route('sauces.index')->with('success', 'Sauce supprimée avec succès');
+    }
+
+    /**
+     * 
+     */
+    public function like($id) {
+        
+        $sauce = Sauce::findOrFail($id);
+        $userId = auth()->id();
+
+        $usersLiked = is_array($sauce->usersLiked) ? json_decode($sauce->usersLiked) : array();
+        $usersDisliked = is_array($sauce->usersDisliked) ? json_decode($sauce->usersDisliked) : array();
+
+        if (in_array($userId, $usersDisliked)) {
+            $sauceDislikes = $sauce->dislikes;
+            $sauceDislikes --;
+            unset($usersDisliked[array_search($userId, $usersDisliked)]);
+
+            $sauce->setAttribute('usersDisliked', $usersDisLiked);
+            $sauce->setAttribute('dislikes', $sauceDislikes);
+        }
+
+        $sauceLikes = $sauce->likes;
+        $sauceLikes ++;
+
+            //$usersLiked = is_array($sauce->usersLiked) ? $sauce->usersLiked : [];
+            /*
+            if($usersLiked == null) {
+                $usersLiked = array();
+            }
+            */
+
+        array_push($usersLiked, $userId);
+
+        $sauce->setAttribute('usersLiked', $usersLiked);
+        $sauce->setAttribute('likes', $sauceLikes);
+
+        $sauce->save();
+
+        return redirect()->route('sauces.index')->with('success', 'Like ajouté avec succès');
+    }
+
+    /**
+     * 
+     */
+    public function dislike($id) {
+        $sauce = Sauce::findOrFail($id);
+        $sauce->increment('dislikes');
+        return redirect()->back()->with('success', 'Dislike ajouté avec succès');
     }
 }

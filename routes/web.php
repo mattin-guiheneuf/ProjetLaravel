@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SauceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,19 +22,14 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/sauces', [App\Http\Controllers\SauceController::class, 'index'])->name('sauces.index');
+Route::get('/sauces', [SauceController::class, 'index'])->name('sauces.index');
+Route::get('/sauces/create', [SauceController::class, 'create'])->name('sauces.create');
+Route::post('/sauces', [SauceController::class, 'store'])->name('sauces.store');
+Route::get('/sauces/{id}', [SauceController::class, 'show'])->name('sauces.show');
+Route::get('/sauces/{id}/edit', [SauceController::class, 'edit'])->name('sauces.edit');
+Route::put('/sauces/{id}', [SauceController::class, 'update'])->name('sauces.update');
+Route::delete('/sauces/{id}', [SauceController::class, 'destroy'])->name('sauces.destroy');
 
-Route::get('/sauces/{id}', [App\Http\Controllers\SauceController::class, 'show'])->name('sauces.show');
-
-Route::get('/create', [App\Http\Controllers\SauceController::class, 'create'])->name('sauces.create');
-
-Route::post('/store', [App\Http\Controllers\SauceController::class, 'store'])->name('sauces.store');
-
-Route::delete('/sauces/{id}', [App\Http\Controllers\SauceController::class, 'destroy'])->name('sauces.destroy');
-
-Route::get('/edit/{id}', [App\Http\Controllers\SauceController::class, 'edit'])->name('sauces.edit');
-
-Route::put('/update/{id}', [App\Http\Controllers\SauceController::class, 'update'])->name('sauces.update');
 
 Route::post('/sauces/{id}/like', [App\Http\Controllers\SauceController::class, 'like'])->name('sauces.like');
 Route::post('/sauces/{id}/dislike', [App\Http\Controllers\SauceController::class, 'dislike'])->name('sauces.dislike');

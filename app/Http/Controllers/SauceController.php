@@ -164,3 +164,7 @@ class SauceController extends Controller
         return redirect()->back()->with('success', 'Dislike ajouté avec succès');
     }
 }
+
+
+
+

@@ -13,8 +13,13 @@
         @if(Auth::check())
         @if(Auth::user()->id == $sauce->userId)
         <a href="{{ route('sauces.edit', ['id' => $sauce->id]) }}" method="POST">Modifier la sauce</a>
-        <button>Supprimer la sauce</button>
+        <form action="{{ route('sauces.destroy', ['id' => $sauce->id]) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Supprimer la sauce</button>
+        </form>
         @endif
         @endif
     </div>
 @endsection
+

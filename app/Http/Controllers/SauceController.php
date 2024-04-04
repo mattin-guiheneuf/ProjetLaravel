@@ -96,14 +96,8 @@ class SauceController extends Controller
 
         $sauce = Sauce::findOrFail($id);
 
-        $sauce->update([
-            'name' => $request->input('name'),
-            'manufacturer' => $request->input('manufacturer'),
-            'description' => $request->input('description'),
-            'mainPepper' => $request->input('mainPepper'),
-            'imageUrl' => $request->input('imageUrl'),
-            'heat' => $request->input('heat')
-        ]);
+        $sauce->update([$request->all()]);
+        
         return redirect()->route('sauces.index')->with('success', 'Sauce modifiée avec succès');
     }
 

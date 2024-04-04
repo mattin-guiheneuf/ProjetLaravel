@@ -34,3 +34,4 @@ Route::delete('/sauces/{id}', [App\Http\Controllers\SauceController::class, 'des
 Route::get('/edit/{id}', [App\Http\Controllers\SauceController::class, 'edit'])->name('sauces.edit');
 
 Route::put('/update/{id}', [App\Http\Controllers\SauceController::class, 'update'])->name('sauces.update');
+
